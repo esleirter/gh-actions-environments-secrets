@@ -13,6 +13,7 @@ jobs:
       PORT: 8080
       MONGODB_CLUSTER_ADDRESS: mongo.database.net
       MONGODB_USERNAME: mongo_user
+      MONGODB_PASSWORD: 123qwe
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -29,11 +30,15 @@ jobs:
       # - name: Run tests
       #   run: npm test
       - name: Output information
-        run: 
+        run: |
+          echo "MONGODB_CLUSTER_ADDRESS: $MONGODB_CLUSTER_ADDRESS"
+          echo "MONGODB_USERNAME: $MONGODB_USERNAME"
+          echo "MONGODB_PASSWORD: $MONGODB_PASSWORD"
   deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Output information
         run: |        
-          echo "..."
+          echo "MONGODB_USERNAME: $MONGODB_USERNAME"
+          echo "MONGODB_PASSWORD: $MONGODB_PASSWORD"
